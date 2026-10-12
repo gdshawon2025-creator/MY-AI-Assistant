@@ -1,0 +1,112 @@
+{
+  "entities": {
+    "Project": {
+      "title": "Project",
+      "description": "A portfolio project showcase item with case study details",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string", "maxLength": 150 },
+        "subtitle": { "type": "string", "maxLength": 250 },
+        "category": { "type": "string", "enum": ["web", "mobile", "design", "branding", "other"] },
+        "description": { "type": "string", "maxLength": 3000 },
+        "problemStatement": { "type": "string", "maxLength": 2000 },
+        "solutionStatement": { "type": "string", "maxLength": 2000 },
+        "resultsStatement": { "type": "string", "maxLength": 2000 },
+        "coverImage": { "type": "string", "maxLength": 3000000 },
+        "tags": { "type": "array" },
+        "client": { "type": "string", "maxLength": 100 },
+        "year": { "type": "string", "maxLength": 20 },
+        "role": { "type": "string", "maxLength": 100 },
+        "liveUrl": { "type": "string", "maxLength": 500 },
+        "repoUrl": { "type": "string", "maxLength": 500 },
+        "featured": { "type": "boolean" },
+        "authorId": { "type": "string", "maxLength": 128 },
+        "authorEmail": { "type": "string", "maxLength": 128 },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["title", "category", "description", "client", "year"]
+    },
+    "Profile": {
+      "title": "Profile",
+      "description": "Creator portfolio owner profile and contact metrics",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string", "maxLength": 100 },
+        "nameEn": { "type": "string", "maxLength": 100 },
+        "title": { "type": "string", "maxLength": 150 },
+        "titleEn": { "type": "string", "maxLength": 150 },
+        "bio": { "type": "string", "maxLength": 2000 },
+        "bioEn": { "type": "string", "maxLength": 2000 },
+        "email": { "type": "string", "maxLength": 120 },
+        "phone": { "type": "string", "maxLength": 50 },
+        "whatsapp": { "type": "string", "maxLength": 50 },
+        "location": { "type": "string", "maxLength": 100 },
+        "avatarUrl": { "type": "string", "maxLength": 3000000 },
+        "resumeUrl": { "type": "string", "maxLength": 500 },
+        "github": { "type": "string", "maxLength": 300 },
+        "linkedin": { "type": "string", "maxLength": 300 },
+        "completedProjects": { "type": "number" },
+        "yearsExperience": { "type": "number" },
+        "satisfiedClients": { "type": "number" },
+        "onTimeDeliveryRate": { "type": "number" },
+        "authorId": { "type": "string", "maxLength": 128 },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["name", "email", "title"]
+    },
+    "ContentSection": {
+      "title": "ContentSection",
+      "description": "Dynamic section contents such as skills, experience, or education",
+      "type": "object",
+      "properties": {
+        "items": { "type": "array" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      }
+    },
+    "AdminSettings": {
+      "title": "AdminSettings",
+      "description": "Admin configuration including hashed access key and preferences",
+      "type": "object",
+      "properties": {
+        "passwordHash": { "type": "string", "maxLength": 128 },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      }
+    },
+    "ContactMessage": {
+      "title": "ContactMessage",
+      "description": "Inbound inquiry message sent through the portfolio contact form",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string", "maxLength": 100 },
+        "email": { "type": "string", "maxLength": 120 },
+        "projectType": { "type": "string", "maxLength": 50 },
+        "message": { "type": "string", "maxLength": 3000 },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["name", "email", "message"]
+    }
+  },
+  "firestore": {
+    "/projects/{projectId}": {
+      "schema": { "$ref": "#/entities/Project" },
+      "description": "Portfolio project collection viewable by all, editable by creator or admin"
+    },
+    "/profile/{profileId}": {
+      "schema": { "$ref": "#/entities/Profile" },
+      "description": "Global creator profile data public for view, editable by authenticated creator or admin"
+    },
+    "/content/{contentId}": {
+      "schema": { "$ref": "#/entities/ContentSection" },
+      "description": "Dynamic skills, experience, and education collections"
+    },
+    "/settings/{settingId}": {
+      "schema": { "$ref": "#/entities/AdminSettings" },
+      "description": "Admin security and configuration data"
+    },
+    "/contact_messages/{messageId}": {
+      "schema": { "$ref": "#/entities/ContactMessage" },
+      "description": "Direct contact inquiries created by visitors and viewable by admin/owner"
+    }
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "name": "Portfolio Hub - পোর্টফোলিও শোকেস",
+  "description": "একটি আধুনিক পোর্টফোলিও ম্যানেজমেন্ট ও শোকেস প্ল্যাটফর্ম যেখানে আপনি আপনার কাজের প্রকল্প, দক্ষতা ও অর্জন প্রদর্শন ও সংরক্ষণ করতে পারবেন।",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
